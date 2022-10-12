@@ -23,6 +23,7 @@
 #
 
 
+from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -171,23 +172,43 @@ class Simulation:
                 time_spent_in_system,   \
                 idle_time_of_server,    \
                 total_waiting_time,     \
-                total_spent_in_system,  \
-                total_idle_time
 
     def graph_plot(self, data, plot_title):
-        pass
+        # We want the packet number, i.e. 1, 2, 3, ...
+        x_axis = [i for i in range(1, len(data) + 1)]
+        # Create a bar graph for queuing delay of packets.
+        plt.clf()
+        plt.style.use('ggplot')
+        plt.bar(x_axis, data, color='cornflowerblue')
+        # Formatting 
+        plt.title(plot_title)
+        plt.xlabel('Packet number')
+        plt.ylabel('Queueing delay (seconds)')
+        plt.savefig('histograms/' + plot_title + '.png')
 
-    def average_queuing_delay(self):
-        pass
+    def average_queuing_delay(self, queue_delay):
+        total_qd = 0
+        for i in queue_delay:
+            total_qd += i
+        return total_qd / len(queue_delay)
 
-    def average_time_spent_in_system(self):
-        pass
 
-    def waiting_probability(self):
-        pass
+    def average_time_spent_in_system(self, time_spent_in_system):
+        total_tsis = 0
+        for i in time_spent_in_system:
+            total_tsis += i
+        return total_tsis / len(time_spent_in_system)
+        
+    def waiting_probability(self, queue_delay):
+        num_waiting_packets = 0
+        for i in queue_delay:
+            if i != 0:
+                num_waiting_packets += 1
+        return num_waiting_packets / len(queue_delay)
 
-    def average_number_of_packets_in_system(self):
-        pass
+    def average_number_of_packets_in_system(self, total_waiting_time, departure_time):
+        simulation_time = departure_time[-1]
+        return total_waiting_time / simulation_time
 
 
 # Main function
@@ -204,20 +225,37 @@ def main():
 
     SERVICE_RATE = 3
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
-    s.average_queuing_delay()
-    s.average_time_spent_in_system()
-    s.waiting_probability()
+    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 3)")
+    print(s.average_queuing_delay(sim_results[2]))
+    print(s.average_time_spent_in_system(sim_results[4]))
+    print(s.waiting_probability(sim_results[2]))
     s.average_number_of_packets_in_system()
 
     SERVICE_RATE = 5
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
+    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 5)")
+    print(s.average_queuing_delay(sim_results[2]))
+    print(s.average_time_spent_in_system(sim_results[4]))
+    print(s.waiting_probability(sim_results[2]))
+    s.average_number_of_packets_in_system()
 
     SERVICE_RATE = 6
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
+    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 6)")
+    print(s.average_queuing_delay(sim_results[2]))
+    print(s.average_time_spent_in_system(sim_results[4]))
+    print(s.waiting_probability(sim_results[2]))
+    s.average_number_of_packets_in_system()
 
     SERVICE_RATE = 8
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
+    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 8)")
+    print(s.average_queuing_delay(sim_results[2]))
+    print(s.average_time_spent_in_system(sim_results[4]))
+    print(s.waiting_probability(sim_results[2]))
+    s.average_number_of_packets_in_system()
 
+    
 # Execution of the code
 if __name__ == "__main__":
     main()
