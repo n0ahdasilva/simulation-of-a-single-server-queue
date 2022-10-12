@@ -229,7 +229,7 @@ def main():
     print(s.average_queuing_delay(sim_results[2]))
     print(s.average_time_spent_in_system(sim_results[4]))
     print(s.waiting_probability(sim_results[2]))
-    s.average_number_of_packets_in_system()
+    (s.average_number_of_packets_in_system(sim_results[7], sim_results[3]))
 
     SERVICE_RATE = 5
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
