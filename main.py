@@ -39,27 +39,27 @@ class SimulationInputData:
     # Initialize data lists from given text files.
     def __init__(self):
         # Store inter-arrival time data to list.
-        with open("./interArrivals.txt") as file:
+        with open("interArrivals.txt") as file:
             for line in file:
                 line = float(line.strip())
                 self.inter_arrival_time.append(line)
         # Store service time data with a service rate of 3 packets/sec to list.
-        with open("./serviceTimesMu3.txt") as file:
+        with open("serviceTimesMu3.txt") as file:
             for line in file:
                 line = float(line.strip())
                 self.service_time_mu3.append(line)
         # Store service time data with a service rate of 5 packets/sec to list.
-        with open("./serviceTimesMu5.txt") as file:
+        with open("serviceTimesMu5.txt") as file:
             for line in file:
                 line = float(line.strip())
                 self.service_time_mu5.append(line)
         # Store service time data with a service rate of 6 packets/sec to list.
-        with open("./serviceTimesMu6.txt") as file:
+        with open("serviceTimesMu6.txt") as file:
             for line in file:
                 line = float(line.strip())
                 self.service_time_mu6.append(line)
         # Store service time data with a service rate of 8 packets/sec to list.
-        with open("./serviceTimesMu8.txt") as file:
+        with open("serviceTimesMu8.txt") as file:
             for line in file:
                 line = float(line.strip())
                 self.service_time_mu8.append(line)
@@ -210,6 +210,17 @@ class Simulation:
         simulation_time = departure_time[-1]
         return total_waiting_time / simulation_time
 
+    def print_sim_data(self, sim_results):
+        print("Average Queueing Delay:\t\t\t" + 
+            str(self.average_queuing_delay(sim_results[2])))
+        print("Average Time Spent In System:\t\t" + 
+            str(self.average_time_spent_in_system(sim_results[4])))
+        print("Waiting Probability of Packet:\t\t" + 
+            str(self.waiting_probability(sim_results[2])))
+        print("Average Num of Packets in System:\t" + 
+            str(self.average_number_of_packets_in_system(sim_results[6], sim_results[3])))
+
+
 
 # Main function
 def main():
@@ -220,40 +231,34 @@ def main():
     s.set_service_rate(service_rate=SERVICE_RATE)
     s.set_service_time_list(s.get_service_rate)
     
-    print("The average arrival rate for the packets is " \
+    print("\nThe average arrival rate for packets is " \
         + str(s.get_arrival_rate(service_rate=SERVICE_RATE)) + " per second.")
 
+    print("\nSERVICE RATE OF 3 PACKETS PER SECOND \n")
     SERVICE_RATE = 3
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
     #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 3)")
-    print(s.average_queuing_delay(sim_results[2]))
-    print(s.average_time_spent_in_system(sim_results[4]))
-    print(s.waiting_probability(sim_results[2]))
-    print(s.average_number_of_packets_in_system(sim_results[6], sim_results[3]))
+    s.print_sim_data(sim_results=sim_results)
 
+    print("\nSERVICE RATE OF 5 PACKETS PER SECOND \n")
     SERVICE_RATE = 5
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
     #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 5)")
-    print(s.average_queuing_delay(sim_results[2]))
-    print(s.average_time_spent_in_system(sim_results[4]))
-    print(s.waiting_probability(sim_results[2]))
-    print(s.average_number_of_packets_in_system(sim_results[6], sim_results[3]))
+    s.print_sim_data(sim_results=sim_results)
 
+    print("\nSERVICE RATE OF 6 PACKETS PER SECOND \n")
     SERVICE_RATE = 6
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
     #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 6)")
-    print(s.average_queuing_delay(sim_results[2]))
-    print(s.average_time_spent_in_system(sim_results[4]))
-    print(s.waiting_probability(sim_results[2]))
-    print(s.average_number_of_packets_in_system(sim_results[6], sim_results[3]))
+    s.print_sim_data(sim_results=sim_results)
 
+    print("\nSERVICE RATE OF 8 PACKETS PER SECOND \n")
     SERVICE_RATE = 8
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
     #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 8)")
-    print(s.average_queuing_delay(sim_results[2]))
-    print(s.average_time_spent_in_system(sim_results[4]))
-    print(s.waiting_probability(sim_results[2]))
-    print(s.average_number_of_packets_in_system(sim_results[6], sim_results[3]))
+    s.print_sim_data(sim_results=sim_results)
+
+    print()
 
     
 # Execution of the code
