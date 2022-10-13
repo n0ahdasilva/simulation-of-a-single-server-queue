@@ -236,25 +236,25 @@ def main():
     print("\nSERVICE RATE OF 3 PACKETS PER SECOND \n")
     SERVICE_RATE = 3
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
-    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 3)")
+    s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 3)")
     s.print_sim_data(sim_results=sim_results)
 
     print("\nSERVICE RATE OF 5 PACKETS PER SECOND \n")
     SERVICE_RATE = 5
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
-    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 5)")
+    s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 5)")
     s.print_sim_data(sim_results=sim_results)
 
     print("\nSERVICE RATE OF 6 PACKETS PER SECOND \n")
     SERVICE_RATE = 6
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
-    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 6)")
+    s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 6)")
     s.print_sim_data(sim_results=sim_results)
 
     print("\nSERVICE RATE OF 8 PACKETS PER SECOND \n")
     SERVICE_RATE = 8
     sim_results = s.simulate(service_rate=SERVICE_RATE, queue_size=QUEUE_SIZE, buffer=BUFFER)
-    #s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 8)")
+    s.graph_plot(sim_results[2], "Queueing delay of each packet (service rate of 8)")
     s.print_sim_data(sim_results=sim_results)
 
     print()
