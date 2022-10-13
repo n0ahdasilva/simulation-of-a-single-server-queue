@@ -11,7 +11,8 @@
 #       main()
 # 
 #   NOTES :
-#       ...
+#       The simulation took a bit of work to determine the best, most appropriate
+#       equations to use for each simulation variable.
 # 
 #   AUTHOR(S) : Noah Arcand Da Silva    START DATE : 2022.10.11 (YYYY.MM.DD)
 #
@@ -20,6 +21,7 @@
 # 
 #   VERSION     DATE        WHO             DETAILS
 #   0.0.1a      2022.10.11  Noah            Creation of project.
+#   0.0.1b      2022.10.12  Noah            First functional version of program.
 #
 
 
@@ -218,7 +220,6 @@ class Simulation:
             str(self.waiting_probability(sim_results[2])))
         print("Average Num of Packets in System:\t" + 
             str(self.average_number_of_packets_in_system(sim_results[6], sim_results[3])))
-
 
 
 # Main function
