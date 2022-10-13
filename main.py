@@ -179,7 +179,7 @@ class Simulation:
         # Create a bar graph for queuing delay of packets.
         plt.clf()
         plt.style.use('ggplot')
-        plt.bar(x_axis, data, color='cornflowerblue')
+        plt.bar(x_axis, data, width=1, color='cornflowerblue')
         # Formatting 
         plt.title(plot_title)
         plt.xlabel('Packet number')
