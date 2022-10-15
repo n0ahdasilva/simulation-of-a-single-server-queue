@@ -22,6 +22,7 @@
 #   VERSION     DATE        WHO             DETAILS
 #   0.0.1a      2022.10.11  Noah            Creation of project.
 #   0.0.1b      2022.10.12  Noah            First functional version of program.
+#   0.0.1c      2022.10.13  Noah            Added statistical outputs and graphs.
 #
 
 
