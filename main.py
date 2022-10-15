@@ -207,9 +207,12 @@ class Simulation:
                 num_waiting_packets += 1
         return num_waiting_packets / len(queue_delay)
 
-    def average_number_of_packets_in_system(self, total_waiting_time, departure_time):
+    def average_number_of_packets_in_system(self, time_spent_in_system, departure_time):
+        total_time_spent_in_system = 0
         simulation_time = departure_time[-1]
-        return total_waiting_time / simulation_time
+        for i in time_spent_in_system:
+            total_time_spent_in_system += i
+        return total_time_spent_in_system / simulation_time
 
     def print_sim_data(self, sim_results):
         print("Average Queueing Delay:\t\t\t" + 
@@ -219,7 +222,7 @@ class Simulation:
         print("Waiting Probability of Packet:\t\t" + 
             str(self.waiting_probability(sim_results[2])))
         print("Average Num of Packets in System:\t" + 
-            str(self.average_number_of_packets_in_system(sim_results[6], sim_results[3])))
+            str(self.average_number_of_packets_in_system(sim_results[4], sim_results[3])))
 
 
 # Main function
